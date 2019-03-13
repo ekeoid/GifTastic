@@ -59,7 +59,7 @@
 - `992 px` (m)
 - `1200 px` (l)
 
-<pre>ul {
+<style>ul {
     list-style-type: none;
     margin-left: 40px;
-}</pre>
+}</style>
