@@ -26,7 +26,7 @@ $("#ID").on("click", function() {
 $.ajax({
   url: queryURL,
   method: "GET"
-}).then(function(response)) {
+}).then(function(response) {
   // CODE GOES HERE
 });
 
@@ -35,18 +35,40 @@ response.data.title
 response.data.url
 
 response.data.images.fixed_width_small
-.url
-.width : 100
-.height : 100
+    .url
+    .width : 100
+    .height : 100
 
 response.data.images.fixed_width_small_still
-.url
-.width: 100
-.height: 100
+    .url
+    .width: 100
+    .height: 100
+
+response.data.images.fixed_width_still
+    .url
+    .width: 200
+    .height: 200
+
+response.data.images.fixed_width
+    .url
+    .width: 200
+    .height: 200
+
+response.data.images.480w_still
+    .url
+    .width: 480
+    .height: 480
 
 
+response.data.images.original
+    .url
+    .width: 720
+    .height: 720
 
-
+response.data.images.original_still
+    .url
+    .width: 720
+    .height: 720
 
 ```
 
