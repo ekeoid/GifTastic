@@ -59,8 +59,3 @@
 - `768 px` (s)
 - `992 px` (m)
 - `1200 px` (l)
-
-<style>ul {
-    list-style-type: none;
-    margin-left: 40px;
-}</style>
