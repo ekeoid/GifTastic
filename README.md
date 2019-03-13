@@ -22,9 +22,9 @@
 `response.data.url`
 
 `response.data.images.fixed_width_small`
-> `.url` 
-> `.width`: `100` 
-> `.height`: `100` 
+> - `.url` 
+> - `.width`: `100` 
+> - `.height`: `100` 
 
 `response.data.images.fixed_width_small_still`
 
