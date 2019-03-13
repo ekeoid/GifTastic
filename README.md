@@ -17,7 +17,12 @@
 `http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=YOUR_API_KEY`
 
 ```js
-$.ajax({---}).then(function(response)) {---});
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response)) {
+ /*** CODE GOES HERE ***/
+});
 
 response.data.id
 response.data.title
