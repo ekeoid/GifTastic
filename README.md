@@ -16,6 +16,10 @@
 
 `http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=YOUR_API_KEY`
 
+`https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats`
+`http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC`
+
+
 ```js
 // Coding Notes
 
@@ -59,7 +63,6 @@ response.data.images.480w_still
     .width: 480
     .height: 480
 
-
 response.data.images.original
     .url
     .width: 720
@@ -69,6 +72,7 @@ response.data.images.original_still
     .url
     .width: 720
     .height: 720
+
 
 ```
 
