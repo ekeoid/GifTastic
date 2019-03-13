@@ -68,6 +68,8 @@ ol ul, ol ol, ul ul, ul ol {
 
 li {
 	margin: .5em 0;
+	list-style-type: none;
+    	/* margin-left: 40px; */
 }
 
 abbr {
