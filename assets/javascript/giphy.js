@@ -7,7 +7,7 @@ function printButtons() {
     for (var i=0; i < topics.length; i++) {
         var newButton = $("<button>");
         newButton.attr("type", "button");
-        newButton.attr("class", "button-print");
+        newButton.attr("class", "button-print btn btn-2 btn-2h");
         newButton.attr("id", topics[i]);
         newButton.text(topics[i]);
         $("#button-area").append(newButton);
