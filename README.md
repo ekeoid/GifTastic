@@ -14,7 +14,7 @@
 |`q'| Search query term or phrase. GIPHY search will automatically look for exact matches to queries + AND match + OR match. Explicit AND + OR boolean clauses in search queries are not supported.|
 |`limit`|The maximum number of records to return. (default: "25")
 
-<pre>
+```js
 http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=YOUR_API_KEY
 
 
@@ -35,7 +35,7 @@ response.data.images.fixed_width_small_still
 .width: 100
 .height: 100
 
-</pre>
+```
 
 
 
