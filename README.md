@@ -1,3 +1,4 @@
+<link href="readme.css" rel="stylesheet"></link>
 # GifTastic
 
 ### Search Endpoint
