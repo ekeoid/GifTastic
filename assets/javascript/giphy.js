@@ -1,10 +1,14 @@
 // Homework 6 - API's
 
+var api_key = "I13VgxVl0OMhKW6CC8InkKcR2S5eXFlB";
+var limit = 10;
+
 var topics = ["fear", "anger", "sadness", "joy", "disgust", "surprise", "trust", "anticipation"];
+var favorites = [];
 
 function printButtons() {
-
-    for (var i=0; i < topics.length; i++) {
+    $("#button-area").empty();
+    for (var i = 0; i < topics.length; i++) {
         var newButton = $("<button>");
         newButton.attr("type", "button");
         newButton.attr("class", "button-print btn btn-2 btn-2h");
@@ -12,59 +16,109 @@ function printButtons() {
         newButton.text(topics[i]);
         $("#button-area").append(newButton);
     }
-    
+
 }
 
-function getQueryURL (q) {
-    var api_key = "I13VgxVl0OMhKW6CC8InkKcR2S5eXFlB";
-    var limit = 10;
+function printFavorites() {
+    $("#favorite-list").empty();
+
+    var newUL = $("<ul>");
+
+
+    for (var i = 0; i < favorites.length; i++) {
+
+        var queryURL = "http://api.giphy.com/v1/gifs/" + favorites[i] + "?api_key=" + api_key;
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            var newLI = $("<li>");
+
+            newLI.text(response.data.title);
+            console.log(response.data.images.fixed_width_small_still);
+            console.log(response.data.url);
+            newUL.append(newLI);
+        });
+    }
+
+    $("#favorite-list").append(newUL);
+}
+
+
+
+
+function getQuery(q) {
     var query_term = q;
 
-    return "https://api.giphy.com/v1/gifs/search?q=" + query_term + "&limit=" + limit + "&api_key=" + api_key;
-}
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + query_term + "&limit=" + limit + "&api_key=" + api_key;
 
-var queryURL = getQueryURL("disgust");
-
-$.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response);
-  });
-
-
-printButtons();
-/*
-var movie = ["Mr. Nobody", "Lion King", "Aladin", "Frozen"];
-
-for (var i = 0; i < movie.length; i++) {
-
-    var queryURL = "https://www.omdbapi.com/?t=" + movie[i] + "&y=&plot=short&apikey=trilogy";
-    
-      $.ajax({
+    $.ajax({
         url: queryURL,
         method: "GET"
-      }).then(function (response) {
-        var newRow = $("<tr>");
-        // Create and save a reference to new empty table row
-        
-        //var titleID = $("<td>").text(response.Title);
-        var newCol1 = $("<td>");
-        newCol1.text(response.Title);
+    }).then(function (response) {
+        //console.log(response);
 
-        var newCol2 = $("<td>");
-        newCol2.text(response.Year);
+        for (var i = 0; i < 10; i++) {
+            var divTag = $("<div>");
+            var pTag = $("<p>");
+            var imgTag = $("<img>");
+            var buttonTag = $("<button>");
 
-        var newCol3 = $("<td>");
-        newCol3.text(response.Actors);
-        // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
-        // Append the td elements to the new table row
+            divTag.addClass("gifblock");
+            imgTag.addClass("gifinfo");
+            pTag.addClass("ratings");
+            buttonTag.addClass("favbutton");
 
-        newCol1.appendTo(newRow);
-        newCol2.appendTo(newRow);
-        newCol3.appendTo(newRow);
-        // Append the table row to the tbody element
-        $("tbody").append(newRow);
-      });
+            imgTag.attr("url_movie", response.data[i].images.original.url);
+            imgTag.attr("url_still", response.data[i].images.original_still.url);
+            imgTag.attr("rating", response.data[i].rating);
+
+            buttonTag.text("+");
+            buttonTag.attr("id", response.data[i].id);
+            buttonTag.attr("title", response.data[i].title);
+
+            pTag.text("Rating: " + imgTag.attr("rating"));
+            imgTag.attr("src", imgTag.attr("url_still"));
+
+
+            divTag.append(pTag, imgTag, buttonTag);
+
+            $("#gif-area").prepend(divTag);
+        }
+
+    });
+
+}
+
+$(document).on("click", ".button-print", function () {
+    event.preventDefault();
+
+    getQuery($(this).attr("id"));
+});
+
+$(document).on("click", "#search-button", function () {
+    event.preventDefault();
+
+    var input = $("#search-input").val();
+    $("#search-input").val("");
+    if (input != "") {
+        topics.push(input);
+        printButtons();
     }
-    */
+});
+
+$(document).on("click", ".gifinfo", function () {
+    if ($(this).attr("src") == $(this).attr("url_still")) {
+        $(this).attr("src", $(this).attr("url_movie"));
+    } else {
+        $(this).attr("src", $(this).attr("url_still"));
+    }
+});
+
+$(document).on("click", ".favbutton", function () {
+    favorites.push($(this).attr("id"));
+    printFavorites();
+});
+
+printButtons();

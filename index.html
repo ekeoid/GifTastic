@@ -9,19 +9,48 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+<style>
+    .col {
+        border: 1px dotted red;
+    }
+</style>
 
 <body>
-    <div id="button-area"></div>
+    <div class="col main">
+        <div id="button-area" class="col"></div>
+        <div id="gif-area" class="col">
+            <!-- <div class="gifs col">
+                <p class="ratings col">Rating: g</p>
+                <img src="https://media2.giphy.com/media/PaG51G9OKKdKU/giphy_s.gif">
+            </div>
+            <div class="gifs col">
+                <p class="ratings col">Rating: g</p>
+                <img src="https://media0.giphy.com/media/jou4Cd2mx1lGU/giphy_s.gif">
+            </div>
+            <div class="gifs col">
+                <p class="ratings col">Rating: pg</p>
+                <img src="https://media3.giphy.com/media/l2JJwoI01FCRpfQE8/giphy_s.gif">
+            </div> -->
 
-    <form>
-        <div id="search-area">
-            <label for="formInputLabel">Add an emotion</label>
-            <input type="text" id="search-input" placeholder="Type emotion here...">
+            
         </div>
-        <button type="submit" id="search-button" class="btn btn-1 btn-1a">Submit</button>
-    </form>
+    </div>
 
-    <div id="gif-area"></div>
+    <div class="col sidebar">
+        <form>
+            <div id="search-area">
+                <label class="input-label" for="formInputLabel">Add an emotion:</label>
+                <input class="input-box" type="text" id="search-input" placeholder="Type emotion here...">
+            </div>
+            <button type="submit" id="search-button" class="btn btn-1 btn-1a">Submit</button>
+        </form>
+        <div id="favorite-area">
+            <p>Favorites</p>
+            <div id="favorite-list"></div>
+        </div>
+    </div>
+
+
 
     <!-- <script src="http://code.jquery.com/jquery-3.3.1.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
