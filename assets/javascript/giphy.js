@@ -1,7 +1,7 @@
-// Homework 6 - API's
+// Homework 6 - GIPHY APIß
 
-var api_key = "I13VgxVl0OMhKW6CC8InkKcR2S5eXFlB";
-var limit = 10;
+var api_key = "I13VgxVl0OMhKW6CC8InkKcR2S5eXFlB"; // try to hide inside query function. 
+var limit = 10; // limit should try to be unique??
 
 var topics = ["fear", "anger", "sadness", "joy", "disgust", "surprise", "trust", "anticipation"];
 var favorites = [];
@@ -19,7 +19,17 @@ function printButtons() {
 
 }
 
+/*
+printFavorites()
+Uses array favorites() and stores "data.id" of Giphy API. The function prints favorites as HTML using jQuery using unordered lists "<ul><li>" to the #sidebar.
+Conditions:
+    1. Only re-print list of favorites if NOT indexOf(). This is to limit the query of data from the site.
+    2. Store relevant data of query in the button attributes to reduce the need for query calls.
+        http://api.giphy.com/v1/gifs/" + {data.id} + "?api_key=" + {API Key}
+       X
+ */
 function printFavorites() {
+    
     $("#favorite-list").empty();
 
     var newUL = $("<ul>");
@@ -46,7 +56,11 @@ function printFavorites() {
 }
 
 
+/*
+Make function to print GIFs
+Try to reduce # of duplicates by searching through query.
 
+*/
 
 function getQuery(q) {
     var query_term = q;
@@ -103,6 +117,7 @@ $(document).on("click", "#search-button", function () {
     var input = $("#search-input").val();
     $("#search-input").val("");
     if (input != "") {
+        // only print if !indexOf()
         topics.push(input);
         printButtons();
     }
