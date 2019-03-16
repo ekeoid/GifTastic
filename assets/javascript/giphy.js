@@ -1,7 +1,6 @@
 // Homework 6 - GIPHY APIß
 
-var api_key = "I13VgxVl0OMhKW6CC8InkKcR2S5eXFlB"; // try to hide inside query function. 
-var limit = 10; // limit should try to be unique??
+
 
 var topics = ["fear", "anger", "sadness", "joy", "disgust", "surprise", "trust", "anticipation"];
 var favorites = [];
@@ -21,38 +20,31 @@ function printButtons() {
 
 /*
 printFavorites()
-Uses array favorites() and stores "data.id" of Giphy API. The function prints favorites as HTML using jQuery using unordered lists "<ul><li>" to the #sidebar.
+Uses array favorites() and stores "data.id" of Giphy API. The function prints favorites as
+HTML using jQuery using unordered lists "<ul><li>" to the #sidebar.
+
 Conditions:
     1. Only re-print list of favorites if NOT indexOf(). This is to limit the query of data from the site.
     2. Store relevant data of query in the button attributes to reduce the need for query calls.
         http://api.giphy.com/v1/gifs/" + {data.id} + "?api_key=" + {API Key}
        X
  */
-function printFavorites() {
-    
-    $("#favorite-list").empty();
+function printFavorites(this_click) {
 
-    var newUL = $("<ul>");
+    var divTag = $("<div>");
+    var liTag = $("<li>");
+    var buttonTag = $("<button>");
 
+    buttonTag.addClass("removebox");
+    buttonTag.text("X");
 
-    for (var i = 0; i < favorites.length; i++) {
+    liTag.addClass("fav-list");
+    liTag.attr("id", $(this_click).attr("id"));
+    liTag.text($(this_click).attr("title"));
 
-        var queryURL = "https://api.giphy.com/v1/gifs/" + favorites[i] + "?api_key=" + api_key;
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            var newLI = $("<li>");
-
-            newLI.text(response.data.title);
-            console.log(response.data.images.fixed_width_small_still);
-            console.log(response.data.url);
-            newUL.append(newLI);
-        });
-    }
-
-    $("#favorite-list").append(newUL);
+    divTag.append(buttonTag, liTag);
+    //liTag.prepend(buttonTag);
+    $("#favorite-list > ul").append(divTag);
 }
 
 
@@ -62,53 +54,68 @@ Try to reduce # of duplicates by searching through query.
 
 */
 
-function getQuery(q) {
-    var query_term = q;
+function getQuery(query_term, limit) {
+    var api_key = "I13VgxVl0OMhKW6CC8InkKcR2S5eXFlB";
+    var queryURL;
 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + query_term + "&limit=" + limit + "&api_key=" + api_key;
+    if (limit == 1) {
+        queryURL = "https://api.giphy.com/v1/gifs/" + query_term + "?api_key=" + api_key;
+    } else {
+        queryURL = "https://api.giphy.com/v1/gifs/search?q=" + query_term + "&limit=" + limit + "&api_key=" + api_key;
+    }
 
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        //console.log(response);
+        var data;
 
-        for (var i = 0; i < 10; i++) {
-            var divTag = $("<div>");
-            var pTag = $("<p>");
-            var imgTag = $("<img>");
-            var buttonTag = $("<button>");
-
-            divTag.addClass("gifblock");
-            imgTag.addClass("gifinfo");
-            pTag.addClass("ratings");
-            buttonTag.addClass("favbutton");
-
-            imgTag.attr("url_movie", response.data[i].images.original.url);
-            imgTag.attr("url_still", response.data[i].images.original_still.url);
-            imgTag.attr("rating", response.data[i].rating);
-
-            buttonTag.text("+");
-            buttonTag.attr("id", response.data[i].id);
-            buttonTag.attr("title", response.data[i].title);
-
-            pTag.text("Rating: " + imgTag.attr("rating"));
-            imgTag.attr("src", imgTag.attr("url_still"));
-
-
-            divTag.append(pTag, imgTag, buttonTag);
-
-            $("#gif-area").prepend(divTag);
+        if (limit == 1) {
+            data = [response.data];
+        } else {
+            data = response.data;
         }
 
+        for (var i = 0; i < data.length; i++) {
+            printGIF(data[i]);
+        }
     });
+}
 
+function printGIF(data) {
+    var divTag = $("<div>");
+    var pTag = $("<p>");
+    var imgTag = $("<img>");
+    var buttonTag = $("<button>");
+
+    divTag.addClass("gifblock");
+    imgTag.addClass("gifinfo");
+    pTag.addClass("ratings");
+    buttonTag.addClass("favbutton");
+
+    imgTag.attr("url_movie", data.images.original.url);
+    imgTag.attr("url_still", data.images.original_still.url);
+    imgTag.attr("rating", data.rating);
+
+    buttonTag.text("+");
+    buttonTag.attr("id", data.id);
+
+    if (data.title == "") {
+        buttonTag.attr("title", "No Title");
+    } else {
+        buttonTag.attr("title", data.title);
+    }
+
+    pTag.text("Rating: " + imgTag.attr("rating"));
+    imgTag.attr("src", imgTag.attr("url_still"));
+
+    divTag.append(pTag, imgTag, buttonTag);
+
+    $("#gif-area").prepend(divTag);
 }
 
 $(document).on("click", ".button-print", function () {
-    event.preventDefault();
-
-    getQuery($(this).attr("id"));
+    getQuery($(this).attr("id"), 10);
 });
 
 $(document).on("click", "#search-button", function () {
@@ -116,8 +123,8 @@ $(document).on("click", "#search-button", function () {
 
     var input = $("#search-input").val();
     $("#search-input").val("");
-    if (input != "") {
-        // only print if !indexOf()
+
+    if (input != "" && topics.indexOf(input.toLowerCase()) == -1) {
         topics.push(input);
         printButtons();
     }
@@ -132,8 +139,25 @@ $(document).on("click", ".gifinfo", function () {
 });
 
 $(document).on("click", ".favbutton", function () {
-    favorites.push($(this).attr("id"));
-    printFavorites();
+    var gifID = $(this).attr("id");
+    if (favorites.indexOf(gifID) == -1) {
+        favorites.push(gifID);
+        printFavorites(this);
+    }
+});
+
+$(document).on("click", ".fav-list", function () {
+    var gifID = $(this).attr("id");
+    getQuery(gifID, 1);
+});
+
+$(document).on("click", ".removebox", function () {
+    var gifID = $(this).parent().find("li").attr("id");
+    
+    $(this).parent().remove();
+
+    favorites.splice(favorites.indexOf(gifID), 1);
+    
 });
 
 printButtons();
