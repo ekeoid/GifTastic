@@ -37,7 +37,7 @@ function printFavorites() {
 
     for (var i = 0; i < favorites.length; i++) {
 
-        var queryURL = "http://api.giphy.com/v1/gifs/" + favorites[i] + "?api_key=" + api_key;
+        var queryURL = "https://api.giphy.com/v1/gifs/" + favorites[i] + "?api_key=" + api_key;
 
         $.ajax({
             url: queryURL,
