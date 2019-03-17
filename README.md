@@ -37,10 +37,41 @@ The rest of this README will overview the functions of the assignment.
 function printButtons() {...}
 ```
 
-##### `function printFavorites(this_click) {...}`
+```js
+function printFavorites(this_click) {...}
+```
 
+```js
+function getQuery(query_term, limit) {...}
+```
 
+```js
+function printGIF(data) {...}
+```
 
+```js
+$(document).on("click", ".button-print", function () {...});
+```
+
+```js
+$(document).on("click", "#search-button", function () {...});
+```
+
+```js
+$(document).on("click", ".gifinfo", function () {...});
+```
+
+```js
+$(document).on("click", ".favbutton", function () {...});
+```
+
+```js
+$(document).on("click", ".fav-list", function () {...});
+```
+
+```js
+$(document).on("click", ".removebox", function () {...});
+```
 
 ### Search Endpoint
 
