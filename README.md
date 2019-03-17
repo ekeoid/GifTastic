@@ -33,7 +33,7 @@ The rest of this README will overview the functions of the assignment.
 
 #### JavaScript - `giphy.js`
 
-#####```js
+```js
 function printButtons() {...}
 ```
 
