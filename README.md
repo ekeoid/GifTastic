@@ -36,19 +36,26 @@ Adding `favorites` section to the game resigned some of the functions. In the ho
 
 ```js
     topics.indexOf(input.toLowerCase()) == -1
+
     favorites.indexOf(gifID) == -1
 ```
 
 A feature I did not implement was updating the `topics` array to not "remake" the buttons. Theoretically, the new location for the new buttons is always `topics.length` and all previous buttons exists. There should be no need to re-establish all the `<button>` DOM information.
 
+The styling for this assignment went back to using basic CSS. Media queries were added for mobile responsive, however the main adjustments were only padding, margin, and image size adjustments. To really respect the responsive assignment, I should focus on layout design in the HTML and figure out how to reposition `<div>` elements for each of the screen width sizes that are logical for end user interface.
+
 A limitation in this code is the API query of the GIF images which performs the search and only returns the top 10. This means each time you call the button query, you have a high chance of getting back the same 10 GIF images. This can be randomized by looking through the `response` object data but was not implemented.
 
 ### JavaScript - `giphy.js`
 
-
 ```js
 function printButtons() {...}
 ```
+The `#button-area` is at the header location of the HTML.
+    1. Empties the `<div>` element
+    2. Loops through `topics.length`
+        1. Prints `<button>` with class `button-print`
+    3. Appends `<button>` to the `#button-area` `<div>`
 
 ```js
 function printFavorites(this_click) {...}
