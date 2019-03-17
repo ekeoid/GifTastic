@@ -51,27 +51,34 @@ A limitation in this code is the API query of the GIF images which performs the 
 ```js
 function printButtons() {...}
 ```
-> The `#button-area` is at the header location of the HTML.
-> - Empties the `<div>` element
-> - Loops through `topics.length`
->    - Prints `<button>` with class `button-print` for each `topic[]`
-> - Appends `<button>` to the `#button-area` `<div>`
+This function puts button topics on the `#button-area` is at the header location of the HTML.
+- Empties the `<div>` element
+- Loops through `topics.length`
+   - Prints `<button>` with class `button-print` for each `topic[]`
+- Appends `<button>` to the `#button-area` `<div>`
 
 ```js
 function printFavorites(this_click) {...}
 ```
+This function uses array `favorites[]` and stores `data.id` of GIPHY API at each index location. The `id` is stored as a unique identifier of the GIF image that is stored mainly to not add repeats of the same GIF when the user tries to favorite another GIF. This function also puts favorite GIF images by `data.title` to the `#favorite-list` in the HTML `<ul>` as an `<li>` element. In addition, a `<button>` tag is created with the text `X` for the user to remove the favorite in the future. The `.favlist` class is added to the `<li>` element tag and `.removebox` class is added to the `<button>` element tag. These classes for used for the event handler.
+- Creates `<div>`, `<li>`, `<button>` tags
+- Uses `this_click` parameter which is a reference to `.favbutton` click action when the user is selecting the GIF to add to the favorites area. The `this` refers the `<button>` created from `printGIF(data)` which assigned attributes `id` and `title` to the tag. These are referenced in the function.
+- Appends the `<div>` favorite item displaying title to the `#favorite-list` `<ul>`
 
 ```js
 function getQuery(query_term, limit) {...}
 ```
 
+
 ```js
 function printGIF(data) {...}
 ```
 
+
 ```js
 $(document).on("click", ".button-print", function () {...});
 ```
+
 
 ```js
 $(document).on("click", "#search-button", function () {...});
