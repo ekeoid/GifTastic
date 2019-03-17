@@ -34,10 +34,10 @@ The rest of this README will overview the functions of the assignment.
 ### Features
 Adding `favorites` section to the game resigned some of the functions. In the homework instructions, it called for "remaking" the list when adding new favorites to the page and for the todo items in Activity 07 `01-todolist-nopersistence`. This "emptying / remaking" seemed very *inefficient* and instead using the global array for `favorites`, the array and HTML only need to be updated or added to when there is a new item. This uses the `indexOf()` method to search in the array.
 
-> ```js
-> topics.indexOf(input.toLowerCase()) == -1
-> favorites.indexOf(gifID) == -1
-> ```
+    ```js
+    topics.indexOf(input.toLowerCase()) == -1
+    favorites.indexOf(gifID) == -1
+    ```
 
 A feature I did not implement was updating the `topics` array to not "remake" the buttons. Theoretically, the new location for the new buttons is always `topics.length` and all previous buttons exists. There should be no need to re-establish all the `<button>` DOM information.
 
