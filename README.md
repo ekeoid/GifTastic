@@ -1,5 +1,46 @@
+# GifTastic (Homework #6)
+
 <link href="readme.css" rel="stylesheet"></link>
-# GifTastic
+
+### Overview
+
+This is bootcamp homework assignment #6. This assignment is a rudimentary custom search engine for [GIPHY][]. This interface are panels, with top area for buttons to click which populate GIFs based on the text of the button. Below is the content area that updates with GIFs from either the button search or favorites. On the side is a search bar which will load more button tags or store favorites of the GIFs.
+
+You can find the instructions for this assignment here: [homework.md][]
+
+The rest of this README will overview the functions of the assignment.
+
+[GIPHY]: https://giphy.com/
+[homework.md]: https://github.com/ekeoid/GifTastic/blob/master/assets/homework.md
+
+### File Structure
+
+```
+├── assets
+|  ├── css
+|  |  └── style.css
+|  └── javascript
+|     └── giphy.js
+└── index.html
+```
+
+### References
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [jQuery](https://api.jquery.com/)
+- [GIPHY](https://developers.giphy.com/docs/)
+
+#### JavaScript - `giphy.js`
+
+#####```js
+function printButtons() {...}
+```
+
+##### `function printFavorites(this_click) {...}`
+
+
+
 
 ### Search Endpoint
 
@@ -23,7 +64,7 @@
 ```js
 // Coding Notes
 
-$("#ID").on("click", function() { 
+$("#ID").on("click", function() {
   event.preventDefault();
 })
 
