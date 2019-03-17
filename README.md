@@ -68,7 +68,7 @@ This function uses array `favorites[]` and stores `data.id` of GIPHY API at each
 ```js
 function getQuery(query_term, limit) {...}
 ```
-This function is where the **AJAX** and **API** happen in the code. Originally it did not contain any arguments, however, it made sense to condense some of the code to wrap getting data and printing the GIF image to the web page. From the GIPHY documentation, there are 2 API URLs which are used to query data for GIFs: by ID and by Search Term.
+This function is where the **AJAX** and **API** happen in the code. Originally it did not contain any arguments, however, it made sense to condense some of the code to wrap getting data and printing the GIF image to the web page. From the GIPHY documentation, there are 2 API URLs which are used to query data for GIFs: by ID and by Search Term. In this function, it will reference either API URL depending on `limit` parameter. The ID endpoint returns only 1 `data` object while the SEARCH endpoint returns an array `data[]` object based on the query limit.
 
 #### Get GIF by ID Endpoint
 
@@ -86,7 +86,7 @@ This function is where the **AJAX** and **API** happen in the code. Originally i
 
 #### Search Endpoint
 
-`http://api.giphy.com/v1/gifs/search?q={SEARCH_TERM}&api_key={YOUR_API_KEY}`
+`http://api.giphy.com/v1/gifs/search?q={SEARCH_TERM}&limit={LIMIT_NUM}&api_key={YOUR_API_KEY}`
 
 |Get Parameters|Value|
 |---|---|
@@ -98,6 +98,14 @@ This function is where the **AJAX** and **API** happen in the code. Originally i
 |`api_key`|GIPHY API Key |
 |`q`| Search query term or phrase. GIPHY search will automatically look for exact matches to queries + AND match + OR match. Explicit AND + OR boolean clauses in search queries are not supported.|
 |`limit`|The maximum number of records to return. (default: "25")
+
+This function:
+- Checks `limit`.
+    - If `1` uses ID endpoint and the AJAX response will also be stored in variable `data` but as a single element array
+    - If `> 1` uses SEARCH endpoint and the AJAX response will store the return data in variable `data`
+    - NOTE: The variable data is the response data, but falls in the sub-data for `response.data`
+- If Promise, loops through `data.length`. Based on this program, it could either be `1` (id) or `10` (search).
+    - Calls function `printGIF(data)` to put HTML of the data on the page.
 
 
 ```js
