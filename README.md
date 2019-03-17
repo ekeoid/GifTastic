@@ -57,6 +57,7 @@ This function puts button topics on the `#button-area` is at the header location
    - Prints `<button>` with class `button-print` for each `topic[]`
 - Appends `<button>` to the `#button-area` `<div>`
 
+
 ```js
 function printFavorites(this_click) {...}
 ```
@@ -64,6 +65,7 @@ This function uses array `favorites[]` and stores `data.id` of GIPHY API at each
 - Creates `<div>`, `<li>`, `<button>` tags
 - Uses `this_click` parameter which is a reference to `.favbutton` click action when the user is selecting the GIF to add to the favorites area. The `this` refers the `<button>` created from `printGIF(data)` which assigned attributes `id` and `title` to the tag. These are referenced in the function.
 - Appends the `<div>` favorite item displaying title to the `#favorite-list` `<ul>`
+
 
 ```js
 function getQuery(query_term, limit) {...}
