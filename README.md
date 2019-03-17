@@ -52,10 +52,10 @@ A limitation in this code is the API query of the GIF images which performs the 
 function printButtons() {...}
 ```
 The `#button-area` is at the header location of the HTML.
-1. Empties the `<div>` element
-2. Loops through `topics.length`
-    1. Prints `<button>` with class `button-print`
-3. Appends `<button>` to the `#button-area` `<div>`
+- Empties the `<div>` element
+- Loops through `topics.length`
+    - Prints `<button>` with class `button-print` for each `topic[]`
+- Appends `<button>` to the `#button-area` `<div>`
 
 ```js
 function printFavorites(this_click) {...}
