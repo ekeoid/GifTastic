@@ -70,7 +70,6 @@ img {
 	margin: 5px;
 	height: 300px;
 	width: 300px;
-    /* background: #369; */
 }
 
 .fav-list {
@@ -87,6 +86,10 @@ img {
 .removebox {
 	margin-left: -25px;
 	margin-right: 15px;
+}
+
+.removebox:hover {
+	cursor: pointer;
 }
 
 .btn {
@@ -142,4 +145,77 @@ img {
 .btn-2h:active {
 	box-shadow: 0 0 #ab3c3c;
 	top: 6px;
+}
+
+/* ===== media query styles ===== */
+/* 1200 px (l), 992 px (m), 768 px (s), 480 px (xs)*/
+
+@media (max-width: 1200px) {
+	/* body {
+		background-color: pink;
+	} */
+}
+
+@media (max-width: 992px) {
+	/* body {
+		background-color: purple;
+	} */
+
+	.gifblock {
+		margin: 5px;
+		height: 250px;
+		width: 250px;
+	}
+}
+
+@media (max-width: 768px) {
+	/* body {
+		background-color: greenyellow;
+	} */
+
+	.gifblock {
+		margin: 10px;
+		height: 200px;
+		width: 200px;
+	}
+
+	.main {
+		width: 100%;
+		display: inline-block;
+	}
+
+	.sidebar {
+		position: relative;
+		float: left;
+		top: 10px;
+		right: 1%;
+		width: 70%;
+		padding-top: 20px;
+	}
+
+	.btn {
+		font-size: 11pt;
+		padding: 10px 10px;
+		margin: 5px 5px;
+		letter-spacing: 1px;
+	}
+
+	.input-box {
+		width: 100%;
+	
+	}
+
+}
+
+@media (max-width: 480px) {
+	/* body {
+		background-color: salmon;
+	} */
+
+	.gifblock {
+		margin: 20px;
+		height: 150px;
+		width: 150px;
+	}
+
 }
