@@ -156,6 +156,6 @@ Click event handler for class `.fav-list` which holds a list of all the `(respon
 ```js
 $(document).on("click", ".removebox", function () {...});
 ```
-Click event handler for class `.removebox` which will remove the entire `<div>` that contains the favorited GIF image and also remove the `id` from the `favorites[]` array. The `<button>` that is clicked has the element as a child of the overall `<div>`. For jQuery `.parent()` and `.find()` methods were used to extract the `id` attribute and to `.remove()` the clicked DOM object.
+Click event handler for class `.removebox` which will remove the entire `<div>` that contains the favorited GIF image and also remove the `id` from the `favorites[]` array. The `<button>` that is clicked has the element as a child of the overall `<div>`. For jQuery `.parent()` and `.find()` methods were used to extract the `id` attribute from another same level `<li>` element and to `.remove()` the clicked DOM object.
 
 
