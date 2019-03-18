@@ -111,6 +111,19 @@ This function:
 ```js
 function printGIF(data) {...}
 ```
+This function prints receives the argument `response.data` from the function `getQuery(query_term, limit)`. Once the AJAX Promise is met, the `data` is a single object. The data extracted is stored in attributes embedded in the HTML.
+- `(response.data)`.`id`
+- `(response.data)`.`title`
+- `(response.data)`.`rating`
+- `(response.data)`.`images.original`
+- `(response.data)`.`images.original_still`
+
+This function:
+- Creates `<div>`, `<p>`, `<img>`,`<button>` tags
+- Add events classes `.gifinfo` and `.favbutton` as needed
+- Assigns values to attributes `url_movie`, `url_still`, `rating`, `title`, and `id` for information retrieval in the code.
+- Wraps all the `<p`, `<img>`, and `<button>` tags into a `<div>`
+- Prepends each GIF in the `<div>` to the HTML `#gif-area`.
 
 
 ```js
@@ -139,65 +152,3 @@ $(document).on("click", ".removebox", function () {...});
 ```
 
 
-
-
-
-`https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats`
-`http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC`
-
-
-```js
-// Coding Notes
-
-$("#ID").on("click", function() {
-  event.preventDefault();
-})
-
-$.ajax({
-  url: queryURL,
-  method: "GET"
-}).then(function(response) {
-  // CODE GOES HERE
-});
-
-response.data.id
-response.data.title
-response.data.url
-
-response.data.images.fixed_width_small
-    .url
-    .width : 100
-    .height : 100
-
-response.data.images.fixed_width_small_still
-    .url
-    .width: 100
-    .height: 100
-
-response.data.images.fixed_width_still
-    .url
-    .width: 200
-    .height: 200
-
-response.data.images.fixed_width
-    .url
-    .width: 200
-    .height: 200
-
-response.data.images.480w_still
-    .url
-    .width: 480
-    .height: 480
-
-response.data.images.original
-    .url
-    .width: 720
-    .height: 720
-
-response.data.images.original_still
-    .url
-    .width: 720
-    .height: 720
-
-
-```
