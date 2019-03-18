@@ -129,26 +129,33 @@ This function:
 ```js
 $(document).on("click", ".button-print", function () {...});
 ```
-
+Click event handler for class `.button-print` which are the list of `topics[]`. Clicking the button calls the function `getQuery()`. These buttons set the `limit` parameter to `10` and the `query_term` parameter to the `<button>` attribute `id` which is the `String` word of the `topics[]`.
 
 ```js
 $(document).on("click", "#search-button", function () {...});
 ```
+Click event handler for id `#search-button` which captures and processes the input of the search bar `#search-input`. If the input is blank (`""`) or `.indexOf` the `topics[]`, the topic won't be added. As long as there is input, it will update the `topics[]` and reprint the buttons with function `printButtons()`.
+
+A feature that could be added to this is a list of the available topics to choose from (emotions) which will restrict the user input to only the topic.
 
 ```js
 $(document).on("click", ".gifinfo", function () {...});
 ```
+Click event handler for ID/class
 
 ```js
 $(document).on("click", ".favbutton", function () {...});
 ```
+Click event handler for ID/class
 
 ```js
 $(document).on("click", ".fav-list", function () {...});
 ```
+Click event handler for ID/class
 
 ```js
 $(document).on("click", ".removebox", function () {...});
 ```
+Click event handler for ID/class
 
 
