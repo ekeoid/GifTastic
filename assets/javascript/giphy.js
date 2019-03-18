@@ -121,7 +121,7 @@ $(document).on("click", ".button-print", function () {
 $(document).on("click", "#search-button", function () {
     event.preventDefault();
 
-    var input = $("#search-input").val();
+    var input = $("#search-input").val().trim();
     $("#search-input").val("");
 
     if (input != "" && topics.indexOf(input.toLowerCase()) == -1) {
