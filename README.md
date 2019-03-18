@@ -141,21 +141,21 @@ A feature that could be added to this is a list of the available topics to choos
 ```js
 $(document).on("click", ".gifinfo", function () {...});
 ```
-Click event handler for ID/class
+Click event handler for class `.gifinfo` which animates or stops the GIF image/video. Since this is an `<img>` tag and uses the source link attribute `src`, an `if` statement will compare that to the with the *paused* attribute `url_still`. If `true`, then the `src` is replaced with the `url_movie` to allow animation. Both the `url_still` and `url_movie` attribute values should remain untouched after they are initially assigned.
 
 ```js
 $(document).on("click", ".favbutton", function () {...});
 ```
-Click event handler for ID/class
+Click event handler for class `.favbutton` which is a `+` sign button added to the bottom left corner of every GIF image. The `<button>` tag for this already has the associated attribute `id` for the GIF image. It is captured and compared with `.indexOf()` in `favorites[]` to make sure there are no repeats. If the favorite is new, it is added to to the array `favorites[]` and `#favorite-list` HTML.
 
 ```js
 $(document).on("click", ".fav-list", function () {...});
 ```
-Click event handler for ID/class
+Click event handler for class `.fav-list` which holds a list of all the `(response.data).title` of the GIF images. Clicking the titles will call the function `getQuery()` with the attribute `id` for the `this` GIF image and a `limit` of `1` to ensure the ID endpoint is used for the AJAX query.
 
 ```js
 $(document).on("click", ".removebox", function () {...});
 ```
-Click event handler for ID/class
+Click event handler for class `.removebox` which will remove the entire `<div>` that contains the favorited GIF image and also remove the `id` from the `favorites[]` array. The `<button>` that is clicked has the element as a child of the overall `<div>`. For jQuery `.parent()` and `.find()` methods were used to extract the `id` attribute and to `.remove()` the clicked DOM object.
 
 
